@@ -2,19 +2,61 @@
 //
 
 #include <iostream>
+#include <conio.h>
 
 #include "utils.h"
+#include "Piece.h"
 
 int main()
 {
-	// select a piece
+	// check for .txt files in the cwd
 	std::vector<std::string> file_names{};
 	get_filenames(file_names);
 
-	if (file_names.size() == 0) {
-		std::cout << "You need a .txt containing the music notes." << '\n';
-		std::cin.get();
+	// no .txt is found
+	const unsigned int size{ file_names.size() };
+	if (size == 0) {
+		std::cout << "You need a .txt containing music notes." << '\n';
+		std::ignore = _getch();
 		exit(1);
+	}
+
+	// select a piece
+	if (size == 1) {
+		const auto& name{ file_names.at(0) };
+		std::cout << "Found 1 piece.\n" << file_names.at(0) << "\nPress any key to start.\n";
+		const Piece p{ name };
+		std::ignore = _getch();
+		p.play();
+	}
+	else {
+		int count{ 1 };
+		int selected{};
+		while (true) {
+			std::cout << "Found " << size << " pieces.\nSelect a number below.\n";
+			for (const auto& name : file_names) {
+				std::cout << count++ << " - " << name << '\n';
+			}
+
+			selected = std::cin.get();
+			if (std::cin.fail()) {
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				system("cls");
+				continue;
+			}
+			if (selected < 1 || selected > size) {
+				system("cls");
+				continue;
+			}
+
+			break;
+		}
+
+		std::cout << "Press any key to start.\n";
+		const Piece p{ file_names.at(selected - 1) }; // selected starts at 1, not 0
+		std::ignore = _getch();
+		p.play();
 	}
 }
 

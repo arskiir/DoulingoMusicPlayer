@@ -41,11 +41,13 @@ int main()
 			selected = std::cin.get();
 			if (std::cin.fail()) {
 				std::cin.clear();
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.ignore(LLONG_MAX, '\n');
+				count = 1;
 				system("cls");
 				continue;
 			}
 			if (selected < 1 || selected > size) {
+				count = 1;
 				system("cls");
 				continue;
 			}

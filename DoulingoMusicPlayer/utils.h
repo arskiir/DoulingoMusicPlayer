@@ -2,4 +2,4 @@
 #include <vector>
 #include <string>
 
-void get_filenames(std::vector<std::string>& file_names);
+void get_all_pieces(std::vector<std::string>& file_names);

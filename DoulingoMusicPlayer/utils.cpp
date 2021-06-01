@@ -3,11 +3,16 @@
 #include <filesystem>
 #include <iostream>
 
-void get_filenames(std::vector<std::string>& file_names) {
-	// pushes back all files in cwd to the vector passed in
+#include "Piece.h"
+
+void get_all_pieces(std::vector<Piece> &all_pieces)
+{
+	// pushes back all pieces constructed from files that end with .txt
 	namespace fs = std::filesystem;
-	for (auto& p : fs::directory_iterator(fs::current_path())) {
-		const std::string ext{ p.path().extension().string() };
-		if (ext == ".txt") file_names.push_back(p.path().string());
+	for (auto &p : fs::directory_iterator(fs::current_path()))
+	{
+		const std::string ext{p.path().extension().string()};
+		if (ext == ".txt")
+			all_pieces.emplace_back(p.path().string());
 	}
 }

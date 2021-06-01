@@ -146,6 +146,7 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DoulingoMusicPlayer.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

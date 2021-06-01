@@ -10,43 +10,50 @@
 int main()
 {
 	// check for .txt files in the cwd
-	std::vector<std::string> file_names{};
-	get_filenames(file_names);
+	std::vector<Piece> all_pieces{};
+	get_all_pieces(all_pieces);
 
 	// no .txt is found
-	const unsigned int size{ file_names.size() };
-	if (size == 0) {
+	const unsigned int size{all_pieces.size()};
+	if (size == 0)
+	{
 		std::cout << "You need a .txt containing music notes." << '\n';
 		std::ignore = _getch();
 		exit(1);
 	}
 
 	// select a piece
-	if (size == 1) {
-		const auto& name{ file_names.at(0) };
-		std::cout << "Found 1 piece.\n" << file_names.at(0) << "\nPress any key to start.\n";
-		const Piece p{ name };
+	if (size == 1)
+	{
+		const auto &name{all_pieces.at(0)};
+		std::cout << "Found 1 piece.\n"
+				  << all_pieces.at(0) << "\nPress any key to start.\n";
 		std::ignore = _getch();
-		p.play();
+		all_pieces.at(0).play();
 	}
-	else {
-		int count{ 1 };
-		int selected{};
-		while (true) {
+	else
+	{
+		int count{1};
+		int selected;
+		while (true)
+		{
 			std::cout << "Found " << size << " pieces.\nSelect a number below.\n";
-			for (const auto& name : file_names) {
-				std::cout << count++ << " - " << name << '\n';
+			for (const auto &p : all_pieces)
+			{
+				std::cout << p.print();
 			}
 
-			selected = std::cin.get();
-			if (std::cin.fail()) {
+			std::cin >> selected;
+			if (std::cin.fail())
+			{
 				std::cin.clear();
 				std::cin.ignore(LLONG_MAX, '\n');
 				count = 1;
 				system("cls");
 				continue;
 			}
-			if (selected < 1 || selected > size) {
+			if (selected < 1 || selected > size)
+			{
 				count = 1;
 				system("cls");
 				continue;
@@ -56,9 +63,8 @@ int main()
 		}
 
 		std::cout << "Press any key to start.\n";
-		const Piece p{ file_names.at(selected - 1) }; // selected starts at 1, not 0
 		std::ignore = _getch();
-		p.play();
+		all_pieces.at(selected - 1).play();
 	}
 }
 

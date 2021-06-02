@@ -17,7 +17,7 @@ int main()
 	const unsigned int size{ all_pieces.size() };
 	if (size == 0)
 	{
-		std::cout << "You need a .txt containing music notes." << '\n';
+		std::cout << "You need a .txt containing music notes.\n";
 		std::ignore = _getch();
 		exit(1);
 	}
@@ -27,7 +27,7 @@ int main()
 	{
 		const auto& name{ all_pieces.at(0) };
 		std::cout << "Found 1 piece.\n"
-			<< all_pieces.at(0) << "\nPress any key to start.\n";
+			<< all_pieces.at(0).str() << "\nPress any key to start.\n";
 		std::ignore = _getch();
 		all_pieces.at(0).play();
 	}

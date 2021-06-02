@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
-#include <string>
 
-void get_all_pieces(std::vector<std::string>& file_names);
+#include "Piece.h"
+
+void get_all_pieces(std::vector<Piece>& file_names);

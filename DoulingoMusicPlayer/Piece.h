@@ -8,23 +8,26 @@
 class Piece
 {
 private:
-	std::string file_name;
+	std::string file_path;
 	std::string name;
-
 	std::vector<Segment> segments;
-	int duration;
+	unsigned int duration;
 
 public:
-	Piece(const std::string& file_name) : file_name{ file_name }
+	Piece(const std::string& file_path) : file_path{ file_path }
 	{
-		this->get_name();
-		this->get_duration();
+		this->init_name();
+		this->duration = this->get_duration();
 	};
 
 	// gets the name of the piece and initializes this->name
-	void get_name();
+	void init_name();
 
-	// load all the notes in the text file into a container class
+	// loads all the notes in the text file into a container class
+	//
+	// in example.txt
+	// 60-12312121   // first Segment with 60 bpm (line 1)
+	// 50-33300232   // second Segment with 50 bpm (line 2)
 	void load();
 
 	// plays the piece by sending key inputs

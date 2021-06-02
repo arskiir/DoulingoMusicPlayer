@@ -1,20 +1,19 @@
 #include <fstream>
 #include <filesystem>
-#include <cmath>
+#include <sstream>
 
 #include "Piece.h"
 
 void Piece::load()
 {
 	std::ifstream ifile;
-	ifile.open(this->file_name);
+	ifile.open(this->file_path);
 	// TODO
 }
 
-void Piece::get_name()
+void Piece::init_name()
 {
-	std::string result{};
-	// TODO
+	this->name = std::filesystem::path(this->file_path).stem().string();
 }
 
 int Piece::get_duration() const
@@ -30,9 +29,9 @@ std::string Piece::format_duration() const
 {
 	short mins{};
 	short secs{};
+	std::string result{};
 
-	
-	// TODO
+
 }
 
 std::string Piece::str() const

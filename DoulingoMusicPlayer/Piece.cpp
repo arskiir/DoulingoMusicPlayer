@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <sstream>
 #include <thread>
+#include <iostream>
 
 #include "Piece.h"
 
@@ -16,10 +17,11 @@ void Piece::load_file()
 {
 	std::ifstream ifile;
 	ifile.open(this->file_path);
-	// TODO make it get more lines
 	std::string line{};
-	std::getline(ifile, line);
-	this->segments.emplace_back(line);
+	while (!ifile.eof()) {
+		std::getline(ifile, line);
+		this->segments.emplace_back(line);
+	}
 }
 
 void Piece::init_name()

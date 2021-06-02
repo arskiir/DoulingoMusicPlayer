@@ -14,7 +14,7 @@ int main()
 	get_all_pieces(all_pieces);
 
 	// no .txt is found
-	const unsigned int size{all_pieces.size()};
+	const unsigned int size{ all_pieces.size() };
 	if (size == 0)
 	{
 		std::cout << "You need a .txt containing music notes." << '\n';
@@ -25,22 +25,22 @@ int main()
 	// select a piece
 	if (size == 1)
 	{
-		const auto &name{all_pieces.at(0)};
+		const auto& name{ all_pieces.at(0) };
 		std::cout << "Found 1 piece.\n"
-				  << all_pieces.at(0) << "\nPress any key to start.\n";
+			<< all_pieces.at(0) << "\nPress any key to start.\n";
 		std::ignore = _getch();
 		all_pieces.at(0).play();
 	}
 	else
 	{
-		int count{1};
+		int count{ 1 };
 		int selected;
 		while (true)
 		{
 			std::cout << "Found " << size << " pieces.\nSelect a number below.\n";
-			for (const auto &p : all_pieces)
+			for (const auto& p : all_pieces)
 			{
-				std::cout << p.print();
+				std::cout << p.str();
 			}
 
 			std::cin >> selected;

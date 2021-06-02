@@ -4,14 +4,14 @@
 
 #include "Piece.h"
 
-void Piece::load() const
+void Piece::load()
 {
 	std::ifstream ifile;
 	ifile.open(this->file_name);
 	// TODO
 }
 
-void Piece::get_name() const
+void Piece::get_name()
 {
 	std::string result{};
 	// TODO
@@ -19,15 +19,23 @@ void Piece::get_name() const
 
 int Piece::get_duration() const
 {
-	return std::floor(1 / (double)this->bpm * this->notes.size() * 60);
+	int dur{};
+	for (const auto& segment : this->segments) {
+		dur += segment.get_duration();
+	}
+	return dur;
 }
 
 std::string Piece::format_duration() const
 {
+	short mins{};
+	short secs{};
+
+	
 	// TODO
 }
 
-std::string Piece::print() const
+std::string Piece::str() const
 {
 	return this->name + " - " + this->format_duration();
 }

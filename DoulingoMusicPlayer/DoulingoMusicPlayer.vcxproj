@@ -143,11 +143,13 @@
   <ItemGroup>
     <ClCompile Include="DoulingoMusicPlayer.cpp" />
     <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="Segment.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoulingoMusicPlayer.h" />
     <ClInclude Include="Piece.h" />
+    <ClInclude Include="Segment.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

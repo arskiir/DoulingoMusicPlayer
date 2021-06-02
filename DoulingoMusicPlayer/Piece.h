@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <thread>
 
 #include "Segment.h"
 
@@ -12,6 +13,7 @@ private:
 	std::string name;
 	std::vector<Segment> segments;
 	unsigned int duration;
+	std::thread play_thread;
 
 public:
 	Piece(const std::string& file_path);
@@ -44,4 +46,7 @@ public:
 		out << piece.str();
 		return out;
 	}
+
+private:
+	void _play() const;
 };

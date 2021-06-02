@@ -1,6 +1,7 @@
 #include <fstream>
 #include <filesystem>
 #include <sstream>
+#include <thread>
 
 #include "Piece.h"
 
@@ -48,6 +49,13 @@ std::string Piece::format_duration() const
 	return buffer.str();
 }
 
+void Piece::_play() const
+{
+	for (const auto& segment : this->segments) {
+		segment.play();
+	}
+}
+
 std::string Piece::str() const
 {
 	return this->name + " - " + this->format_duration();
@@ -55,7 +63,8 @@ std::string Piece::str() const
 
 void Piece::play() const
 {
-	// TODO
+	// TODO use a thread
 	// starts a new thread
 	// keeps updating console to show the progression of the piece
+	this->_play();
 }

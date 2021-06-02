@@ -3,12 +3,19 @@
 
 #include <iostream>
 #include <conio.h>
+#include <map>
 
 #include "utils.h"
 #include "Piece.h"
+#include "Segment.h"
+
+std::map<char, int> Segment::key_map;
 
 int main()
 {
+	// init key map
+	Segment::initialize_key_map(Segment::key_map);
+
 	// check for .txt files in the cwd
 	std::vector<Piece> all_pieces{};
 	get_all_pieces(all_pieces);
@@ -34,7 +41,7 @@ int main()
 	else
 	{
 		int count{ 1 };
-		int selected;
+		unsigned int selected;
 		while (true)
 		{
 			std::cout << "Found " << size << " pieces.\nSelect a number below.\n";
@@ -52,7 +59,7 @@ int main()
 				system("cls");
 				continue;
 			}
-			if (selected < 1 || selected > size)
+			if ((selected < 1) || (selected > size))
 			{
 				count = 1;
 				system("cls");

@@ -14,11 +14,7 @@ private:
 	unsigned int duration;
 
 public:
-	Piece(const std::string& file_path) : file_path{ file_path }
-	{
-		this->init_name();
-		this->duration = this->get_duration();
-	};
+	Piece(const std::string& file_path);
 
 	// gets the name of the piece and initializes this->name
 	void init_name();
@@ -28,7 +24,8 @@ public:
 	// in example.txt
 	// 60-12312121   // first Segment with 60 bpm (line 1)
 	// 50-33300232   // second Segment with 50 bpm (line 2)
-	void load();
+	// initializes this->segments
+	void load_file();
 
 	// plays the piece by sending key inputs
 	void play() const;

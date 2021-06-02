@@ -4,11 +4,21 @@
 
 #include "Piece.h"
 
-void Piece::load()
+Piece::Piece(const std::string& file_path) : file_path{ file_path }
+{
+	this->init_name();
+	this->load_file();
+	this->duration = this->get_duration();
+};
+
+void Piece::load_file()
 {
 	std::ifstream ifile;
 	ifile.open(this->file_path);
-	// TODO
+	// TODO make it get more lines
+	std::string line{};
+	std::getline(ifile, line);
+	this->segments.emplace_back(line);
 }
 
 void Piece::init_name()
@@ -27,11 +37,15 @@ int Piece::get_duration() const
 
 std::string Piece::format_duration() const
 {
-	short mins{};
-	short secs{};
-	std::string result{};
+	unsigned int mins{ this->duration / 60 };
+	unsigned int secs{ this->duration % 60 };
 
+	std::stringstream buffer;
+	buffer << mins;
+	if (secs < 10) buffer << ":0"; else buffer << ":";
+	buffer << secs;
 
+	return buffer.str();
 }
 
 std::string Piece::str() const

@@ -10,7 +10,7 @@ Segment::Segment(const std::string& portion)
 
 int Segment::get_duration() const
 {
-	return this->notes.size() * 60;
+	return this->notes.size() * 60 / this->bpm;
 }
 
 void Segment::parse(const std::string& portion)
